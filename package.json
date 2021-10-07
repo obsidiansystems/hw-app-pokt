@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/obsidiansystems/hw-app-kda"
+    "url": "git+https://github.com/obsidiansystems/hw-app-kda.git"
   },
   "bugs": {
     "url": "https://github.com/obsidiansystems/hw-app-kda/issues"
   },
-  "homepage": "https://github.com/obsidiansystems/hw-app-kda",
+  "homepage": "https://github.com/obsidiansystems/hw-app-kda#readme",
   "publishConfig": {
     "access": "public"
   },
