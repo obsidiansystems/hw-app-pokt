@@ -1,4 +1,4 @@
-const Kadena = require("@ledgerhq/hw-app-kda").default;
+const Kadena = require("hw-app-kda").default;
 const SpeculosTransport = require("@ledgerhq/hw-transport-node-speculos").default;
 
 async function main() {

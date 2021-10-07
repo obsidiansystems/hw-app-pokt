@@ -32,7 +32,7 @@ export type GetVersionResult = {
  * Kadena API
  *
  * @example
- * import Kadena from "@ledgerhq/hw-app-kda";
+ * import Kadena from "hw-app-kda";
  * const kda = new Kadena(transport)
  */
 
