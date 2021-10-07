@@ -34,5 +34,5 @@
   },
   "scripts": {
     "build": "tsc && tsc -m ES6 --outDir lib-es"
-  },
+  }
 }
