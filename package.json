@@ -34,5 +34,9 @@
   },
   "scripts": {
     "build": "tsc && tsc -m ES6 --outDir lib-es"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.3",
+    "typescript": "^4.4.3"
   }
 }
