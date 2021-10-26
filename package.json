@@ -30,7 +30,8 @@
   "types": "lib/Kadena.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "@ledgerhq/hw-transport": "^6.3.0"
+    "@ledgerhq/hw-transport": "^6.3.0",
+    "hw-app-obsidian-common": "git+http://github.com/obsidiansystems/hw-app-obsidian-common"
   },
   "scripts": {
     "build": "tsc && tsc -m ES6 --outDir lib-es",
