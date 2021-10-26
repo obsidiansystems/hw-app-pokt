@@ -1,36 +1,36 @@
 {
-  "name": "hw-app-kda",
+  "name": "hw-app-pokt",
   "version": "0.0.0",
-  "description": "Ledger Hardware Wallet Kadena Application API",
+  "description": "Ledger Hardware Wallet Pokt Application API",
   "keywords": [
     "Ledger",
     "LedgerWallet",
-    "kda",
-    "Kadena",
+    "Pokt",
     "NanoS",
     "Blue",
     "Hardware Wallet"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/obsidiansystems/hw-app-kda.git"
+    "url": "git+https://github.com/obsidiansystems/hw-app-pokt.git"
   },
   "bugs": {
-    "url": "https://github.com/obsidiansystems/hw-app-kda/issues"
+    "url": "https://github.com/obsidiansystems/hw-app-pokt/issues"
   },
-  "homepage": "https://github.com/obsidiansystems/hw-app-kda#readme",
+  "homepage": "https://github.com/obsidiansystems/hw-app-pokt#readme",
   "publishConfig": {
     "access": "public"
   },
-  "main": "lib/Kadena.js",
+  "main": "lib/Pokt.js",
   "bin": {
-    "kda-cli": "main.js"
+    "pokt-cli": "main.js"
   },
-  "module": "lib-es/Kadena.js",
-  "types": "lib/Kadena.d.ts",
+  "module": "lib-es/Pokt.js",
+  "types": "lib/Pokt.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
     "@ledgerhq/hw-transport": "^6.3.0",
+    "documentation": "^13.2.5",
     "hw-app-obsidian-common": "git+http://github.com/obsidiansystems/hw-app-obsidian-common"
   },
   "scripts": {

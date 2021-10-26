@@ -2,10 +2,10 @@ import {
   openTransportReplayer,
   RecordStore,
 } from "@ledgerhq/hw-transport-mocker";
-import Kadena from "../src/Kadena";
+import Pokt from "../src/Pokt";
 
-test("Kadena init", async () => {
+test("Pokt init", async () => {
   const transport = await openTransportReplayer(RecordStore.fromString(""));
-  const kda = new Kadena(transport);
-  expect(kda).not.toBe(undefined);
+  const pkt = new Pokt(transport);
+  expect(pkt).not.toBe(undefined);
 });

@@ -20,17 +20,17 @@ import { Common, GetPublicKeyResult, SignTransactionResult, GetVersionResult } f
 export { GetPublicKeyResult, SignTransactionResult, GetVersionResult };
 
 /**
- * Kadena API
+ * Pokt API
  *
  * @example
- * import Kadena from "hw-app-kda";
- * const kda = new Kadena(transport)
+ * import Pokt from "hw-app-pokt";
+ * const pokt = new Pokt(transport)
  */
 
-export default class Kadena extends Common {
+export default class Pokt extends Common {
   
   constructor(transport: Transport) {
-    super(transport, "KDA");
+    super(transport, "PKT");
   }
 }
 
