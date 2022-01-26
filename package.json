@@ -31,7 +31,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@ledgerhq/hw-transport": "^6.3.0",
-    "hw-app-obsidian-common": "git+http://github.com/obsidiansystems/hw-app-obsidian-common"
+    "hw-app-obsidian-common": "git+http://github.com/obsidiansystems/hw-app-obsidian-common#d221085eff93bce7efd731ec919e4c5c7a5f30ad"
   },
   "scripts": {
     "build": "tsc && tsc -m ES6 --outDir lib-es",
