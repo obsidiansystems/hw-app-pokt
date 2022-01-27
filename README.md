@@ -1,7 +1,7 @@
 [Github](https://github.com/LedgerHQ/ledgerjs/),
 [Ledger Devs Slack](https://ledger-dev.slack.com/)
 
-## hw-app-kda
+# hw-app-kda
 
 [Ledger Hardware Wallet](https://www.ledger.com/) JavaScript bindings for [Kadena](https://kadena.io/), based on [LedgerJS](https://github.com/LedgerHQ/ledgerjs).
 
@@ -44,7 +44,7 @@ doAll().catch(err => console.log(err));
 
 ## API
 
-#### Table of Contents
+### Table of Contents
 
 -   [Kadena](#kadena)
     -   [Parameters](#parameters)
@@ -59,31 +59,28 @@ doAll().catch(err => console.log(err));
         -   [Parameters](#parameters-3)
         -   [Examples](#examples-3)
 
-### Kadena
 
-Kadena API for Ledger
-
-#### Parameters
+### Parameters
 
 -   `transport` **`Transport<any>`**
 -   `scrambleKey` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `"Kadena"`)
 
-#### Examples
+### Examples
 
 ```javascript
 import Kadena from "@obsidiansystems/hw-app-kda";
 const kadena = new Kadena(transport);
 ```
 
-#### getPublicKey
+### getPublicKey
 
 Get Kadena address for a given BIP-32 path.
 
-##### Parameters
+#### Parameters
 
 -   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a path in BIP-32 format
 
-##### Examples
+#### Examples
 
 ```javascript
 const publicKey = await kadena.getPublicKey("44'/626'/0'/0/0");
@@ -92,15 +89,15 @@ const publicKey = await kadena.getPublicKey("44'/626'/0'/0/0");
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** an object with a public key.
 
 
-#### signTransaction
+### signTransaction
 
 Sign a transaction with a given BIP-32 path.
 
-##### Parameters
+#### Parameters
 
 -   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a path in BIP-32 format
 
-##### Examples
+#### Examples
 
 ```javascript
 const publicKey = await kadena.signTransaction("44'/626'/0'/0/0");
@@ -108,11 +105,11 @@ const publicKey = await kadena.signTransaction("44'/626'/0'/0/0");
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** an object with text field containing a signature.
 
-#### getVersion
+### getVersion
 
 Get the version of the application installed on the hardware device.
 
-##### Examples
+#### Examples
 
 ```javascript
 console.log(await kadena.getVersion());
