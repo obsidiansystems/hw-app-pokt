@@ -68,7 +68,7 @@ doAll().catch(err => console.log(err));
 ### Examples
 
 ```javascript
-import Kadena from "@obsidiansystems/hw-app-kda";
+import Kadena from "hw-app-kda";
 const kadena = new Kadena(transport);
 ```
 
@@ -100,7 +100,10 @@ Sign a transaction with a given BIP-32 path.
 #### Examples
 
 ```javascript
-const publicKey = await kadena.signTransaction("44'/626'/0'/0/0");
+const publicKey = await kadena.signTransaction(
+  "44'/626'/0'/0/0",
+  "<transaction contents>"
+  );
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** an object with text field containing a signature.
@@ -125,5 +128,5 @@ for version 0.1.0, it produces something like
 }
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;{version: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), commit: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), name: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)}>** an object with a version.
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;{[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)}>** an object with major, minor, and patch of the version.
 
