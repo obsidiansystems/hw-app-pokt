@@ -106,7 +106,7 @@ Sign a transaction with a given BIP-32 path.
 const publicKey = await kadena.signTransaction("44'/626'/0'/0/0");
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** an object with a signature.
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** an object with text field containing a signature.
 
 #### getVersion
 
@@ -122,9 +122,7 @@ produces something like
 
 ```
 {
-  "version": "1.0.3",
-  "commit": "1234567",
-  "name": "KDA"
+  "version": "0.1.0",
 }
 ```
 
