@@ -1,7 +1,7 @@
 [Github](https://github.com/LedgerHQ/ledgerjs/),
 [Ledger Devs Slack](https://ledger-dev.slack.com/)
 
-## @obsidiansystems/hw-app-kda
+## hw-app-kda
 
 [Ledger Hardware Wallet](https://www.ledger.com/) JavaScript bindings for [Kadena](https://kadena.io/), based on [LedgerJS](https://github.com/LedgerHQ/ledgerjs).
 
@@ -18,10 +18,10 @@ const getPublicKey = async () => {
   return await kadena.getPublicKey();
 };
 
-const signHash = async () => {
+const signTransaction = async () => {
   const transport = await Transport.create();
   const kadena = new Kadena(await Transport.create());
-  return await kadena.signHash(
+  return await kadena.signTransaction(
     "44'/626'/0'/0/0",
     "0000000000000000000000000000000000000000000000000000000000000000"
   );
@@ -35,7 +35,7 @@ const getVersion = async () => {
 
 const doAll = async () => {
   console.log(await getPublicKey());
-  console.log(await signHash());
+  console.log(await signTransaction());
   console.log(await getVersion());
 };
 
