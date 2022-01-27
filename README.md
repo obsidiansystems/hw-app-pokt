@@ -10,12 +10,12 @@
 Here is a sample app for Node:
 
 ```javascript
-const Transport = require("@ledgerhq/hw-transport-node-hid").default;
-const Kadena = require("@obsidiansystems/hw-app-kda").default;
+const Transport = require("@ledgerhq/hw-transport").default;
+const Kadena = require("hw-app-kda").default;
 
-const getWalletId = async () => {
+const getPublicKey = async () => {
   const kadena = new Kadena(await Transport.create());
-  return await kadena.getWalletId();
+  return await kadena.getPublicKey();
 };
 
 const signHash = async () => {
@@ -28,20 +28,15 @@ const signHash = async () => {
 };
 
 const getVersion = async () => {
+  const transport = await Transport.create();
   const kadena = new Kadena(await Transport.create());
-  return await kadena.getAppConfiguration();
-};
-
-const getAddress = async () => {
-  const kadena = new Kadena(await Transport.create());
-  return await kadena.getWalletPublicKey("44'/626'/0'/1/0");
+  return await kadena.getVersion();
 };
 
 const doAll = async () => {
-  console.log(await getWalletId());
-  console.log(await getVersion());
-  console.log(await getAddress());
+  console.log(await getPublicKey());
   console.log(await signHash());
+  console.log(await getVersion());
 };
 
 doAll().catch(err => console.log(err));
@@ -54,16 +49,15 @@ doAll().catch(err => console.log(err));
 -   [Kadena](#kadena)
     -   [Parameters](#parameters)
     -   [Examples](#examples)
-    -   [getWalletPublicKey](#getwalletpublickey)
+    -   [getPublicKey](#getpublickey)
         -   [Parameters](#parameters-1)
         -   [Examples](#examples-1)
     -   [signTransaction](#signtransaction)
         -   [Parameters](#parameters-2)
         -   [Examples](#examples-2)
-    -   [getAppConfiguration](#getappconfiguration)
+    -   [getVersion](#signtransaction)
+        -   [Parameters](#parameters-3)
         -   [Examples](#examples-3)
-    -   [getWalletId](#getwalletid)
-        -   [Examples](#examples-4)
 
 ### Kadena
 
@@ -81,7 +75,7 @@ import Kadena from "@obsidiansystems/hw-app-kda";
 const kadena = new Kadena(transport);
 ```
 
-#### getWalletPublicKey
+#### getPublicKey
 
 Get Kadena address for a given BIP-32 path.
 
@@ -92,36 +86,36 @@ Get Kadena address for a given BIP-32 path.
 ##### Examples
 
 ```javascript
-const publicKey = await kadena.getWalletPublicKey("44'/626'/0'/0/0");
+const publicKey = await kadena.getPublicKey("44'/626'/0'/0/0");
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** an object with a public key.
 
-#### signHash
 
-Sign a 32-byte hash of transaction with a given BIP-32 path
+#### signTransaction
+
+Sign a transaction with a given BIP-32 path.
 
 ##### Parameters
 
 -   `path` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** a path in BIP-32 format
--   `hash` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** hash of a to sign
 
 ##### Examples
 
 ```javascript
-const signature = await kadena.signHash("44'/626'/0'/0/0", "0000000000000000000000000000000000000000000000000000000000000000");
+const publicKey = await kadena.signTransaction("44'/626'/0'/0/0");
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** a signature as hex string.
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** an object with a signature.
 
-#### getAppConfiguration
+#### getVersion
 
 Get the version of the application installed on the hardware device.
 
 ##### Examples
 
 ```javascript
-console.log(await kadena.getAppConfiguration());
+console.log(await kadena.getVersion());
 ```
 
 produces something like
@@ -136,19 +130,3 @@ produces something like
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;{version: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), commit: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), name: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)}>** an object with a version.
 
-#### getWalletId
-
-Get the wallet identifier for the Ledger wallet. This value distinguishes different Ledger hardware devices which have different seeds.
-
-##### Examples
-
-```javascript
-console.log(await kadena.getWalletId());
-```
-produces something like
-
-```
-abcdefgh
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** a byte string.
