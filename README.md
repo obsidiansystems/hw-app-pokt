@@ -15,7 +15,7 @@ const Kadena = require("hw-app-kda").default;
 
 const getPublicKey = async () => {
   const kadena = new Kadena(await Transport.create());
-  return await kadena.getPublicKey();
+  return await kadena.getPublicKey("44'/626'/0'/0/0");
 };
 
 const signTransaction = async () => {
@@ -23,7 +23,7 @@ const signTransaction = async () => {
   const kadena = new Kadena(await Transport.create());
   return await kadena.signTransaction(
     "44'/626'/0'/0/0",
-    "0000000000000000000000000000000000000000000000000000000000000000"
+    "<transaction contents>"
   );
 };
 
@@ -115,11 +115,13 @@ Get the version of the application installed on the hardware device.
 console.log(await kadena.getVersion());
 ```
 
-produces something like
+for version 0.1.0, it produces something like
 
 ```
 {
-  "version": "0.1.0",
+  0
+  1
+  0
 }
 ```
 
