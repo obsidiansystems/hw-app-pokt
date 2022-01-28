@@ -1,36 +1,36 @@
 [Github](https://github.com/LedgerHQ/ledgerjs/),
-[Ledger Devs Slack](https://ledger-dev.slack.com/)
+[Ledger OP3N Discord](https://discord.gg/hTy7ZXvR7y)
 
 # hw-app-pokt
 
-[Ledger Hardware Wallet](https://www.ledger.com/) JavaScript bindings for [Pocket](https://kadena.io/), based on [LedgerJS](https://github.com/LedgerHQ/ledgerjs).
+[Ledger Hardware Wallet](https://www.ledger.com/) JavaScript bindings for [Pocket](https://www.pokt.network/), based on [LedgerJS](https://github.com/LedgerHQ/ledgerjs).
 
-## Using LedgerJS for Kadena
+## Using LedgerJS for Pocket
 
 Here is a sample app for Node:
 
 ```javascript
 const Transport = require("@ledgerhq/hw-transport").default;
-const Kadena = require("hw-app-kda").default;
+const Pocket = require("hw-app-pokt").default;
 
 const getPublicKey = async () => {
-  const kadena = new Kadena(await Transport.create());
-  return await kadena.getPublicKey("44'/626'/0'/0/0");
+  const pokt = new Pocket(await Transport.create());
+  return await pokt.getPublicKey("44'/535348'/0'/0/0");
 };
 
 const signTransaction = async () => {
   const transport = await Transport.create();
-  const kadena = new Kadena(await Transport.create());
-  return await kadena.signTransaction(
-    "44'/626'/0'/0/0",
+  const pokt = new Pocket(await Transport.create());
+  return await pokt.signTransaction(
+    "44'/535348'/0'/0/0",
     "<transaction contents>"
   );
 };
 
 const getVersion = async () => {
   const transport = await Transport.create();
-  const kadena = new Kadena(await Transport.create());
-  return await kadena.getVersion();
+  const pokt = new Pocket(await Transport.create());
+  return await pokt.getVersion();
 };
 
 const doAll = async () => {
@@ -46,7 +46,7 @@ doAll().catch(err => console.log(err));
 
 ### Table of Contents
 
--   [Kadena](#kadena)
+-   [Pocket](#pokt)
     -   [Parameters](#parameters)
     -   [Examples](#examples)
     -   [getPublicKey](#getpublickey)
@@ -63,18 +63,18 @@ doAll().catch(err => console.log(err));
 ### Parameters
 
 -   `transport` **`Transport<any>`**
--   `scrambleKey` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `"Kadena"`)
+-   `scrambleKey` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `"Pocket"`)
 
 ### Examples
 
 ```javascript
-import Kadena from "hw-app-kda";
-const kadena = new Kadena(transport);
+import Pocket from "hw-app-pokt";
+const pokt = new Pocket(transport);
 ```
 
 ### getPublicKey
 
-Get Kadena address for a given BIP-32 path.
+Get Pocket address for a given BIP-32 path.
 
 #### Parameters
 
@@ -83,7 +83,7 @@ Get Kadena address for a given BIP-32 path.
 #### Examples
 
 ```javascript
-const publicKey = await kadena.getPublicKey("44'/626'/0'/0/0");
+const publicKey = await pokt.getPublicKey("44'/535348'/0'/0/0");
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** an object with a public key.
@@ -100,8 +100,8 @@ Sign a transaction with a given BIP-32 path.
 #### Examples
 
 ```javascript
-const publicKey = await kadena.signTransaction(
-  "44'/626'/0'/0/0",
+const publicKey = await pokt.signTransaction(
+  "44'/535348'/0'/0/0",
   "<transaction contents>"
   );
 ```
@@ -115,7 +115,7 @@ Get the version of the application installed on the hardware device.
 #### Examples
 
 ```javascript
-console.log(await kadena.getVersion());
+console.log(await pokt.getVersion());
 ```
 
 for version 0.1.0, it produces something like
@@ -129,3 +129,4 @@ for version 0.1.0, it produces something like
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;{[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)}>** an object with major, minor, and patch of the version.
+
