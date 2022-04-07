@@ -31,6 +31,8 @@ export default class Pokt extends Common {
   
   constructor(transport: Transport) {
     super(transport, "PKT");
+    // Use new block protocol; needed for raw Ed25519 support.
+    super.sendChunks = super.sendWithBlocks;
   }
 }
 
