@@ -31,6 +31,7 @@ export default class Pokt extends Common {
   
   constructor(transport: Transport) {
     super(transport, "PKT");
+    this.sendChunks = this.sendWithBlocks;
   }
 }
 
