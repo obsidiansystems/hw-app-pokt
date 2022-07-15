@@ -17,7 +17,57 @@
 import type Transport from "@ledgerhq/hw-transport";
 import { Common, GetPublicKeyResult, SignTransactionResult, GetVersionResult } from "hw-app-obsidian-common";
 
+// @ts-ignore -- optional interface, should be any if not installed.
+import { AbstractSigner, Account } from "@pokt-foundation/pocketjs-signer";
+
 export { GetPublicKeyResult, SignTransactionResult, GetVersionResult };
+
+/*
+interface class IAbstractSigner {
+  getAddress(): string
+  getAccount(): Account
+  getPublicKey(): string
+  getPrivateKey(): string
+  sign(payload: string): Promise<string>
+}
+
+type Signer = any extends AbstractSigner ? any : AbstractSigner;
+*/
+
+export class LedgerPoktSigner extends AbstractSigner {
+  address: string;
+  publicKey: string;
+  pokt: Pokt;
+  path: string;
+
+  constructor(pokt: Pokt, path: string, pkr: GetPublicKeyResult) {
+    super();
+    this.address = pkr.address!;
+    this.publicKey = pkr.publicKey;
+    this.pokt = pokt;
+    this.path = path;
+  }
+
+  getAddress() : string {
+    return this.address;
+  }
+
+  getAccount() : Account {
+    return { address: this.address, publicKey: this.publicKey, privateKey: "UNAVAILABLE" };
+  }
+
+  getPublicKey() : string {
+    return this.publicKey;
+  }
+
+  getPrivateKey() : string {
+    return "UNAVAILABLE";
+  }
+
+  async sign(payload: string): Promise<string> {
+    return (await this.pokt.signTransaction(this.path, payload)).signature;
+  }
+}
 
 /**
  * Pokt API
@@ -33,5 +83,11 @@ export default class Pokt extends Common {
     super(transport, "PKT");
     this.sendChunks = this.sendWithBlocks;
   }
+
+  async getSigner(path: string): Promise<LedgerPoktSigner> {
+    const pkr = await this.getPublicKey(path);
+    return new LedgerPoktSigner(this, path, pkr);
+  }
 }
+
 
