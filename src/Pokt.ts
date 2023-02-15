@@ -42,8 +42,8 @@ export class LedgerPoktSigner extends AbstractSigner {
 
   constructor(pokt: Pokt, path: string, pkr: GetPublicKeyResult) {
     super();
-    this.address = pkr.address!;
-    this.publicKey = pkr.publicKey;
+    this.address = Buffer.from(pkr.address!).toString('hex');
+    this.publicKey = Buffer.from(pkr.publicKey).toString('hex');
     this.pokt = pokt;
     this.path = path;
   }
@@ -65,7 +65,8 @@ export class LedgerPoktSigner extends AbstractSigner {
   }
 
   async sign(payload: string): Promise<string> {
-    return (await this.pokt.signTransaction(this.path, payload)).signature;
+    const { signature } = await this.pokt.signTransaction(this.path, payload);
+    return Buffer.from(signature).toString('hex');
   }
 }
 
