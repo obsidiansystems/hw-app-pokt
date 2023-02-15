@@ -31,7 +31,7 @@
   "dependencies": {
     "@ledgerhq/hw-transport": "^6.3.0",
     "documentation": "^13.2.5",
-    "hw-app-obsidian-common": "git+https://github.com/obsidiansystems/hw-app-obsidian-common#9c4c397861e33761f2e5f5af29bb6642a05fd9e1"
+    "hw-app-alamgu": "git+https://github.com/alamgu/hw-app-alamgu#9c4c397861e33761f2e5f5af29bb6642a05fd9e1"
   },
   "optionalDependencies": {
     "@pokt-foundation/pocketjs-signer": "^1.2.0"

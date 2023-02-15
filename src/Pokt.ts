@@ -15,7 +15,7 @@
  *  limitations under the License.
  ********************************************************************************/
 import type Transport from "@ledgerhq/hw-transport";
-import { Common, GetPublicKeyResult, SignTransactionResult, GetVersionResult } from "hw-app-obsidian-common";
+import { Common, GetPublicKeyResult, SignTransactionResult, GetVersionResult } from "hw-app-alamgu";
 
 // @ts-ignore -- optional interface, should be any if not installed.
 import { AbstractSigner, Account } from "@pokt-foundation/pocketjs-signer";
