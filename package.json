@@ -30,7 +30,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@ledgerhq/hw-transport": "^6.3.0",
-    "documentation": "^13.2.5",
     "hw-app-alamgu": "git+https://github.com/alamgu/hw-app-alamgu#663017ad9a58d435722affcf370cebf468e9ce6d"
   },
   "optionalDependencies": {
