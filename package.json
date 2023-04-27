@@ -1,6 +1,6 @@
 {
   "name": "hw-app-pokt",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Ledger Hardware Wallet Pokt Application API",
   "keywords": [
     "Ledger",
