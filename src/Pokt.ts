@@ -15,7 +15,7 @@
  *  limitations under the License.
  ********************************************************************************/
 import type Transport from "@ledgerhq/hw-transport";
-import { Common, GetPublicKeyResult, SignTransactionResult, GetVersionResult } from "hw-app-alamgu";
+import { Common, GetPublicKeyResult, SignTransactionResult, GetVersionResult, buildBip32KeyPayload, splitPath } from "hw-app-alamgu";
 
 // @ts-ignore -- optional interface, should be any if not installed.
 import { AbstractSigner, Account } from "@pokt-foundation/pocketjs-signer";
@@ -88,6 +88,39 @@ export default class Pokt extends Common {
   async getSigner(path: string): Promise<LedgerPoktSigner> {
     const pkr = await this.getPublicKey(path);
     return new LedgerPoktSigner(this, path, pkr);
+  }
+
+  /**
+    * Blind Sign a transaction with the key at a BIP32 path.
+    *
+    * @param txn - The transaction; this can be any of a node Buffer, Uint8Array, or a hexadecimal string, encoding the form of the transaction appropriate for hashing and signing.
+    * @param path - the path to use when signing the transaction.
+    */
+  async blindSignTransaction(
+    path: string,
+    txn: string | Buffer | Uint8Array,
+  ): Promise<SignTransactionResult> {
+    const paths = splitPath(path);
+    const cla = 0x00;
+    const ins = 0x04;
+    const p1 = 0;
+    const p2 = 0;
+    // Transaction payload is the byte length as uint32le followed by the bytes
+    // Type guard not actually required but TypeScript can't tell that.
+    if(this.verbose) this.log(txn);
+    const rawTxn = typeof txn == "string" ? Buffer.from(txn, "hex") : Buffer.from(txn);
+    const hashSize = Buffer.alloc(4);
+    hashSize.writeUInt32LE(rawTxn.length, 0);
+    // Bip32key payload same as getPublicKey
+    const bip32KeyPayload = buildBip32KeyPayload(path);
+    // These are just squashed together
+    const payload_txn = Buffer.concat([hashSize, rawTxn]);
+    this.log("Payload Txn", payload_txn);
+    // TODO batch this since the payload length can be uint32le.max long
+    const signature = await this.sendChunks(cla, ins, p1, p2, [payload_txn, bip32KeyPayload]);
+    return {
+      signature,
+    };
   }
 }
 

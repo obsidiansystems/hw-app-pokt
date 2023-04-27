@@ -1,6 +1,6 @@
 {
   "name": "hw-app-pokt",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Ledger Hardware Wallet Pokt Application API",
   "keywords": [
     "Ledger",
@@ -30,7 +30,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@ledgerhq/hw-transport": "^6.3.0",
-    "hw-app-alamgu": "git+https://github.com/alamgu/hw-app-alamgu#663017ad9a58d435722affcf370cebf468e9ce6d"
+    "hw-app-alamgu": "git+https://github.com/alamgu/hw-app-alamgu#6822e963dd4a92d50929bd8a3b750c90973504b3"
   },
   "optionalDependencies": {
     "@pokt-foundation/pocketjs-signer": "^1.2.0"
